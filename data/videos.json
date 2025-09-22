@@ -1,0 +1,881 @@
+[
+  {
+  "video_id": 1,
+    "name": "Python: Introduction and Setup",
+    "creator_id": 8,
+    "duration": 201298,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_1_0",
+        "type": "ad",
+        "start": 84858,
+        "end": 121568
+      },
+      {
+        "segment_id": "S_1_1",
+        "type": "intro",
+        "start": 111424,
+        "end": 125515
+      },
+      {
+        "segment_id": "S_1_2",
+        "type": "core",
+        "start": 96940,
+        "end": 122101
+      },
+      {
+        "segment_id": "S_1_3",
+        "type": "core",
+        "start": 12272,
+        "end": 45562
+      }
+    ]
+  },
+  {
+  "video_id": 2,
+    "name": "History of Programming Languages",
+    "creator_id": 16,
+    "duration": 165516,
+    "tags": [],
+    "segments": []
+  },
+  {
+  "video_id": 3,
+    "name": "Science: The Scientific Method",
+    "creator_id": 4,
+    "duration": 95040,
+    "tags": [
+      "science"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_3_0",
+        "type": "ad",
+        "start": 13128,
+        "end": 52994
+      },
+      {
+        "segment_id": "S_3_1",
+        "type": "sponsored",
+        "start": 55765,
+        "end": 68899
+      },
+      {
+        "segment_id": "S_3_2",
+        "type": "sponsored",
+        "start": 55443,
+        "end": 71541
+      },
+      {
+        "segment_id": "S_3_3",
+        "type": "outro",
+        "start": 46907,
+        "end": 84623
+      }
+    ]
+  },
+  {
+  "video_id": 4,
+    "name": "Python: Data Types and Variables",
+    "creator_id": 15,
+    "duration": 124095,
+    "tags": [
+      "math",
+      "history",
+      "coding"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_4_0",
+        "type": "sponsored",
+        "start": 38456,
+        "end": 72762
+      },
+      {
+        "segment_id": "S_4_1",
+        "type": "ad",
+        "start": 53581,
+        "end": 65110
+      }
+    ]
+  },
+  {
+  "video_id": 5,
+    "name": "Data Science: Data Collection",
+    "creator_id": 2,
+    "duration": 280035,
+    "tags": [
+      "science",
+      "health",
+      "coding"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_5_0",
+        "type": "outro",
+        "start": 194338,
+        "end": 224867
+      },
+      {
+        "segment_id": "S_5_1",
+        "type": "outro",
+        "start": 56440,
+        "end": 69170
+      },
+      {
+        "segment_id": "S_5_2",
+        "type": "outro",
+        "start": 143402,
+        "end": 175942
+      },
+      {
+        "segment_id": "S_5_3",
+        "type": "outro",
+        "start": 123913,
+        "end": 150785
+      }
+    ]
+  },
+  {
+  "video_id": 6,
+    "name": "Data Science: Data Cleaning",
+    "creator_id": 15,
+    "duration": 291440,
+    "tags": [
+      "art",
+      "health"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_6_0",
+        "type": "ad",
+        "start": 263040,
+        "end": 287125
+      },
+      {
+        "segment_id": "S_6_1",
+        "type": "outro",
+        "start": 26192,
+        "end": 48286
+      },
+      {
+        "segment_id": "S_6_2",
+        "type": "outro",
+        "start": 122364,
+        "end": 133296
+      }
+    ]
+  },
+  {
+  "video_id": 7,
+    "name": "Python: Control Flow",
+    "creator_id": 1,
+    "duration": 274602,
+    "tags": [
+      "health",
+      "coding"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_7_0",
+        "type": "core",
+        "start": 240688,
+        "end": 270238
+      },
+      {
+        "segment_id": "S_7_1",
+        "type": "outro",
+        "start": 211407,
+        "end": 235615
+      }
+    ]
+  },
+  {
+  "video_id": 8,
+    "name": "Business: Starting a Company",
+    "creator_id": 16,
+    "duration": 201513,
+    "tags": [
+      "history",
+      "business"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_8_0",
+        "type": "sponsored",
+        "start": 18551,
+        "end": 56515
+      },
+      {
+        "segment_id": "S_8_1",
+        "type": "ad",
+        "start": 120366,
+        "end": 139294
+      }
+    ]
+  },
+  {
+  "video_id": 9,
+    "name": "Business Analytics: Introduction",
+    "creator_id": 11,
+    "duration": 151779,
+    "tags": [],
+    "segments": []
+  },
+  {
+  "video_id": 10,
+    "name": "Python: Functions and Modules",
+    "creator_id": 2,
+    "duration": 191490,
+    "tags": [
+      "math",
+      "science",
+      "business"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_10_0",
+        "type": "sponsored",
+        "start": 109475,
+        "end": 140770
+      },
+      {
+        "segment_id": "S_10_1",
+        "type": "intro",
+        "start": 49981,
+        "end": 77499
+      },
+      {
+        "segment_id": "S_10_2",
+        "type": "core",
+        "start": 48967,
+        "end": 79790
+      },
+      {
+        "segment_id": "S_10_3",
+        "type": "sponsored",
+        "start": 59788,
+        "end": 77102
+      }
+    ]
+  },
+  {
+  "video_id": 11,
+    "name": "Mathematics: Logic and Proofs",
+    "creator_id": 6,
+    "duration": 164935,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_11_0",
+        "type": "core",
+        "start": 93313,
+        "end": 132841
+      }
+    ]
+  },
+  {
+  "video_id": 12,
+    "name": "Python: Lists and Dictionaries",
+    "creator_id": 11,
+    "duration": 85448,
+    "tags": [
+      "math"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_12_0",
+        "type": "outro",
+        "start": 58444,
+        "end": 85448
+      },
+      {
+        "segment_id": "S_12_1",
+        "type": "core",
+        "start": 48748,
+        "end": 85448
+      }
+    ]
+  },
+  {
+  "video_id": 13,
+    "name": "History: Early Computers",
+    "creator_id": 20,
+    "duration": 250385,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_13_0",
+        "type": "outro",
+        "start": 116702,
+        "end": 142671
+      },
+      {
+        "segment_id": "S_13_1",
+        "type": "ad",
+        "start": 67600,
+        "end": 104857
+      },
+      {
+        "segment_id": "S_13_2",
+        "type": "sponsored",
+        "start": 124879,
+        "end": 150634
+      },
+      {
+        "segment_id": "S_13_3",
+        "type": "outro",
+        "start": 197676,
+        "end": 214028
+      }
+    ]
+  },
+  {
+  "video_id": 14,
+    "name": "Art: Digital Creativity",
+    "creator_id": 20,
+    "duration": 133762,
+    "tags": [
+      "history",
+      "business"
+    ],
+    "segments": []
+  },
+  {
+  "video_id": 15,
+    "name": "Data Science: Visualization",
+    "creator_id": 11,
+    "duration": 176514,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_15_0",
+        "type": "outro",
+        "start": 36237,
+        "end": 52785
+      },
+      {
+        "segment_id": "S_15_1",
+        "type": "outro",
+        "start": 15836,
+        "end": 28427
+      },
+      {
+        "segment_id": "S_15_2",
+        "type": "sponsored",
+        "start": 80534,
+        "end": 95008
+      },
+      {
+        "segment_id": "S_15_3",
+        "type": "sponsored",
+        "start": 87799,
+        "end": 104388
+      }
+    ]
+  },
+  {
+  "video_id": 16,
+    "name": "Business: Marketing Basics",
+    "creator_id": 1,
+    "duration": 172617,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_16_0",
+        "type": "core",
+        "start": 19801,
+        "end": 59653
+      },
+      {
+        "segment_id": "S_16_1",
+        "type": "intro",
+        "start": 133070,
+        "end": 164594
+      }
+    ]
+  },
+  {
+  "video_id": 17,
+    "name": "Machine Learning: Introduction",
+    "creator_id": 10,
+    "duration": 214061,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_17_0",
+        "type": "sponsored",
+        "start": 93380,
+        "end": 110756
+      },
+      {
+        "segment_id": "S_17_1",
+        "type": "ad",
+        "start": 60339,
+        "end": 71406
+      },
+      {
+        "segment_id": "S_17_2",
+        "type": "outro",
+        "start": 128516,
+        "end": 162949
+      },
+      {
+        "segment_id": "S_17_3",
+        "type": "outro",
+        "start": 95176,
+        "end": 105593
+      }
+    ]
+  },
+  {
+  "video_id": 18,
+    "name": "Art: The Creative Process",
+    "creator_id": 9,
+    "duration": 73098,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_18_0",
+        "type": "core",
+        "start": 15905,
+        "end": 34767
+      },
+      {
+        "segment_id": "S_18_1",
+        "type": "outro",
+        "start": 35168,
+        "end": 71492
+      },
+      {
+        "segment_id": "S_18_2",
+        "type": "sponsored",
+        "start": 48265,
+        "end": 67289
+      }
+    ]
+  },
+  {
+  "video_id": 19,
+    "name": "Machine Learning: Regression",
+    "creator_id": 9,
+    "duration": 228754,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_19_0",
+        "type": "intro",
+        "start": 5154,
+        "end": 17855
+      }
+    ]
+  },
+  {
+  "video_id": 20,
+    "name": "Science: Experiments and Results",
+    "creator_id": 11,
+    "duration": 74184,
+    "tags": [
+      "science",
+      "art"
+    ],
+    "segments": []
+  },
+  {
+  "video_id": 21,
+    "name": "Python: Object-Oriented Programming",
+    "creator_id": 2,
+    "duration": 206154,
+    "tags": [
+      "coding"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_21_0",
+        "type": "core",
+        "start": 138416,
+        "end": 165943
+      },
+      {
+        "segment_id": "S_21_1",
+        "type": "intro",
+        "start": 81100,
+        "end": 99234
+      }
+    ]
+  },
+  {
+  "video_id": 22,
+    "name": "Web Development: HTML Basics",
+    "creator_id": 14,
+    "duration": 143899,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_22_0",
+        "type": "intro",
+        "start": 47695,
+        "end": 85159
+      }
+    ]
+  },
+  {
+  "video_id": 23,
+    "name": "Health: Nutrition Essentials",
+    "creator_id": 9,
+    "duration": 154808,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_23_0",
+        "type": "outro",
+        "start": 125494,
+        "end": 140272
+      },
+      {
+        "segment_id": "S_23_1",
+        "type": "core",
+        "start": 130761,
+        "end": 154808
+      }
+    ]
+  },
+  {
+  "video_id": 24,
+    "name": "Art: History and Movements",
+    "creator_id": 14,
+    "duration": 76493,
+    "tags": [
+      "business",
+      "art"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_24_0",
+        "type": "intro",
+        "start": 28017,
+        "end": 67887
+      },
+      {
+        "segment_id": "S_24_1",
+        "type": "outro",
+        "start": 30844,
+        "end": 49908
+      }
+    ]
+  },
+  {
+  "video_id": 25,
+    "name": "Mathematics: Calculus Overview",
+    "creator_id": 1,
+    "duration": 77329,
+    "tags": [
+      "history"
+    ],
+    "segments": []
+  },
+  {
+  "video_id": 26,
+    "name": "Mathematics: Discrete Structures",
+    "creator_id": 7,
+    "duration": 269746,
+    "tags": [
+      "math"
+    ],
+    "segments": []
+  },
+  {
+  "video_id": 27,
+    "name": "History: The Internet Age",
+    "creator_id": 13,
+    "duration": 261896,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_27_0",
+        "type": "intro",
+        "start": 148420,
+        "end": 160430
+      },
+      {
+        "segment_id": "S_27_1",
+        "type": "intro",
+        "start": 240637,
+        "end": 261896
+      },
+      {
+        "segment_id": "S_27_2",
+        "type": "outro",
+        "start": 136797,
+        "end": 165097
+      },
+      {
+        "segment_id": "S_27_3",
+        "type": "core",
+        "start": 187335,
+        "end": 199449
+      }
+    ]
+  },
+  {
+  "video_id": 28,
+    "name": "Web Development: CSS and Styling",
+    "creator_id": 19,
+    "duration": 221815,
+    "tags": [
+      "math",
+      "history",
+      "art"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_28_0",
+        "type": "sponsored",
+        "start": 29311,
+        "end": 43282
+      },
+      {
+        "segment_id": "S_28_1",
+        "type": "core",
+        "start": 43489,
+        "end": 76199
+      },
+      {
+        "segment_id": "S_28_2",
+        "type": "sponsored",
+        "start": 186785,
+        "end": 199831
+      },
+      {
+        "segment_id": "S_28_3",
+        "type": "core",
+        "start": 191289,
+        "end": 213086
+      }
+    ]
+  },
+  {
+  "video_id": 29,
+    "name": "Web Development: JavaScript Basics",
+    "creator_id": 20,
+    "duration": 66430,
+    "tags": [
+      "coding",
+      "business"
+    ],
+    "segments": []
+  },
+  {
+  "video_id": 30,
+    "name": "Business: Finance Fundamentals",
+    "creator_id": 8,
+    "duration": 294678,
+    "tags": [
+      "coding",
+      "art",
+      "business"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_30_0",
+        "type": "intro",
+        "start": 9080,
+        "end": 37119
+      }
+    ]
+  },
+  {
+  "video_id": 31,
+    "name": "Creative Coding: Generative Art",
+    "creator_id": 18,
+    "duration": 103330,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_31_0",
+        "type": "core",
+        "start": 45651,
+        "end": 84737
+      },
+      {
+        "segment_id": "S_31_1",
+        "type": "sponsored",
+        "start": 6566,
+        "end": 18592
+      },
+      {
+        "segment_id": "S_31_2",
+        "type": "sponsored",
+        "start": 73831,
+        "end": 103330
+      },
+      {
+        "segment_id": "S_31_3",
+        "type": "core",
+        "start": 39407,
+        "end": 77384
+      }
+    ]
+  },
+  {
+  "video_id": 32,
+    "name": "Web Development: Responsive Design",
+    "creator_id": 5,
+    "duration": 104702,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_32_0",
+        "type": "ad",
+        "start": 35373,
+        "end": 52505
+      },
+      {
+        "segment_id": "S_32_1",
+        "type": "sponsored",
+        "start": 27781,
+        "end": 56332
+      }
+    ]
+  },
+  {
+  "video_id": 33,
+    "name": "Machine Learning: Neural Networks",
+    "creator_id": 10,
+    "duration": 297210,
+    "tags": [],
+    "segments": []
+  },
+  {
+  "video_id": 34,
+    "name": "Health: Exercise and Wellness",
+    "creator_id": 7,
+    "duration": 164140,
+    "tags": [
+      "health",
+      "science",
+      "coding"
+    ],
+    "segments": []
+  },
+  {
+  "video_id": 35,
+    "name": "Mathematics: Probability and Statistics",
+    "creator_id": 11,
+    "duration": 60375,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_35_0",
+        "type": "core",
+        "start": 6913,
+        "end": 18427
+      }
+    ]
+  },
+  {
+  "video_id": 36,
+    "name": "Science and Technology: Innovations",
+    "creator_id": 19,
+    "duration": 278655,
+    "tags": [
+      "coding"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_36_0",
+        "type": "core",
+        "start": 80955,
+        "end": 91004
+      },
+      {
+        "segment_id": "S_36_1",
+        "type": "outro",
+        "start": 202782,
+        "end": 234370
+      }
+    ]
+  },
+  {
+  "video_id": 37,
+    "name": "Python: Installing Packages",
+    "creator_id": 6,
+    "duration": 107488,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_37_0",
+        "type": "intro",
+        "start": 10278,
+        "end": 26638
+      }
+    ]
+  },
+  {
+  "video_id": 38,
+    "name": "Science: Research Methods",
+    "creator_id": 17,
+    "duration": 97102,
+    "tags": [
+      "business",
+      "health",
+      "science"
+    ],
+    "segments": [
+      {
+        "segment_id": "S_38_0",
+        "type": "sponsored",
+        "start": 62065,
+        "end": 97102
+      },
+      {
+        "segment_id": "S_38_1",
+        "type": "intro",
+        "start": 16254,
+        "end": 42399
+      },
+      {
+        "segment_id": "S_38_2",
+        "type": "outro",
+        "start": 61415,
+        "end": 91196
+      },
+      {
+        "segment_id": "S_38_3",
+        "type": "ad",
+        "start": 35056,
+        "end": 59797
+      }
+    ]
+  },
+  {
+  "video_id": 39,
+    "name": "Python: File I/O and Exceptions",
+    "creator_id": 16,
+    "duration": 145501,
+    "tags": [],
+    "segments": [
+      {
+        "segment_id": "S_39_0",
+        "type": "ad",
+        "start": 39007,
+        "end": 56460
+      },
+      {
+        "segment_id": "S_39_1",
+        "type": "ad",
+        "start": 115850,
+        "end": 129229
+      }
+    ]
+  },
+  {
+  "video_id": 40,
+    "name": "Art: Portfolio Development",
+    "creator_id": 1,
+    "duration": 244321,
+    "tags": [],
+    "segments": []
+  }
+]

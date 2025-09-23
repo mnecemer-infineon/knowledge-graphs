@@ -2,86 +2,122 @@ def is_seeded(session):
     result = session.run("MATCH (u:User) RETURN u LIMIT 1")
     return result.single() is not None
 
-# Insert users, their properties, enrolled courses, and video interactions
-def insert_users(session, users):
-    for user in users:
-        user_id = user.get("id", user.get("user_id"))
+# Insert users, their properties, enrolled courses, and video interactions since these are all defined in the user_video_act.json 
+def insert_data_into_kg(session, user_video_act_data, user_data, course_data, video_data):
+
+    # --- Filter users, courses, and videos to only those referenced in user_video_act_data ---
+    user_ids = set(user['id'] for user in user_video_act_data)
+    course_ids = set()
+    video_ids = set()
+    for user in user_video_act_data:
+        for act in user.get('activity', []):
+            if 'course_id' in act:
+                course_ids.add(act['course_id'])
+            if 'video_id' in act:
+                video_ids.add(act['video_id'])
+
+    filtered_user_data = [u for u in user_data if u['id'] in user_ids]
+    filtered_course_data = [c for c in course_data if c['id'] in course_ids]
+    filtered_video_data = [v for v in video_data if v['id'] in video_ids]
+
+    # --- Insert filtered users with full attributes ---
+    print("Insert users")
+    for user in filtered_user_data:
+        user_props = {k: v for k, v in user.items() if k != 'course_order' and k != 'enroll_time'}
+        set_clause = ", ".join([f"u.{k} = ${k}" for k in user_props if k != 'id'])
+        cypher = "MERGE (u:User {id: $id})"
+        if set_clause:
+            cypher += f" SET {set_clause}"
         session.run(
-            "MERGE (u:User {id: $id, name: $name, age: $age, location: $location})",
-            id=user_id, name=user["name"], age=user.get("age"), location=user.get("location")
+            cypher,
+            **user_props
         )
-        # Video interactions
-        for interaction in user.get("video_interactions", []):
+
+    print("Insert courses")
+    # --- Insert filtered courses with full attributes ---
+    for course in filtered_course_data:
+        # Only keep 'id' and 'core_id' from each course
+        course_props = {k: v for k, v in course.items() if k in ('id', 'core_id')}
+        set_clause = ", ".join([f"c.{k} = ${k}" for k in course_props if k != 'id'])
+        cypher = "MERGE (c:Course {id: $id})"
+        if set_clause:
+            cypher += f" SET {set_clause}"
+        session.run(
+            cypher,
+            **course_props
+        )
+
+    print("Insert videos")
+    # --- Insert filtered videos with full attributes ---
+    for video in filtered_video_data:
+        video_props = {k: v for k, v in video.items() if k != 'start' and k != 'end' and k != 'text'}
+        set_clause = ", ".join([f"v.{k} = ${k}" for k in video_props if k != 'id'])
+        cypher = "MERGE (v:Video {id: $id})"
+        if set_clause:
+            cypher += f" SET {set_clause}"
+        session.run(
+            cypher,
+            **video_props
+        )
+
+    print("Insert relationships - videos are part of courses")
+    # --- Insert course-video relationships (PART_OF) for filtered courses/videos ---
+    for course in filtered_course_data:
+        video_order = course.get('video_order', [])
+        display_names = course.get('display_name', [])
+        chapters = course.get('chapter', [])
+        for idx, video_id in enumerate(video_order):
+            if video_id in video_ids:
+                session.run(
+                    "MATCH (v:Video {id: $video_id}), (c:Course {id: $course_id}) "
+                    "MERGE (v)-[r:PART_OF {video_order: $video_order}]->(c) "
+                    "SET r.display_name = $display_name, r.chapter = $chapter",
+                    video_id=video_id,
+                    course_id=course['id'],
+                    video_order=idx,
+                    display_name=display_names[idx] if idx < len(display_names) else None,
+                    chapter=chapters[idx] if idx < len(chapters) else None
+                )
+
+    print("Insert user relationships - users enrolled in courses and watched videos")
+    # --- Insert user activities and relationships (unchanged) ---
+    for user in user_video_act_data:
+        user_id = user.get("id")
+        activities = user.get("activity", [])
+        for act in activities:
+            video_id = act.get("video_id")
+            course_id = act.get("course_id")
             session.run(
                 "MATCH (u:User {id: $user_id}), (v:Video {id: $video_id}) "
-                "MERGE (u)-[r:INTERACTED_WITH {preferred_speed: $preferred_speed, advertisements_skipped: $advertisements_skipped}] -> (v) "
-                "SET r.segments_skipped = $segments_skipped, r.segments_watched = $segments_watched",
+                "MERGE (u)-[r:WATCHED]->(v) "
+                "SET r.watching_count = $watching_count, r.video_duration = $video_duration, "
+                "r.local_watching_time = $local_watching_time, r.video_progress_time = $video_progress_time, "
+                "r.video_start_time = $video_start_time, r.video_end_time = $video_end_time, "
+                "r.local_start_time = $local_start_time, r.local_end_time = $local_end_time",
                 user_id=user_id,
-                video_id=interaction["video_id"],
-                preferred_speed=interaction.get("preferred_speed"),
-                advertisements_skipped=interaction.get("advertisements_skipped"),
-                segments_skipped=interaction.get("segments_skipped", []),
-                segments_watched=interaction.get("segments_watched", [])
-            )
-
-def insert_courses(session, users):
-    course_ids = set()
-    for user in users:
-        user_id = user.get("id", user.get("user_id"))
-        for course in user.get("enrolled_courses", []):
-            course_id = course["course_id"]
-            course_ids.add(course_id)
-            session.run(
-                "MERGE (c:Course {id: $course_id}) SET c.name = $course_name",
-                course_id=course_id,
-                course_name=course.get("name")
+                video_id=video_id,
+                watching_count=act.get("watching_count"),
+                video_duration=act.get("video_duration"),
+                local_watching_time=act.get("local_watching_time"),
+                video_progress_time=act.get("video_progress_time"),
+                video_start_time=act.get("video_start_time"),
+                video_end_time=act.get("video_end_time"),
+                local_start_time=act.get("local_start_time"),
+                local_end_time=act.get("local_end_time")
             )
             session.run(
                 "MATCH (u:User {id: $user_id}), (c:Course {id: $course_id}) "
-                "MERGE (u)-[r:ENROLLED_IN {enroll_time: $enroll_time}]->(c)",
-                user_id=user_id, course_id=course_id, enroll_time=course["enrollment_date"]
+                "MERGE (u)-[:ENROLLED_IN]->(c)",
+                user_id=user_id,
+                course_id=course_id
             )
-    return list(course_ids)
 
-# Insert videos, segments, and link to creator and courses
-def insert_videos(session, videos, courses=None):
-    for video in videos:
-        session.run(
-            "MERGE (v:Video {id: $id, name: $name, duration: $duration, tags: $tags})",
-            id=video["video_id"], name=video["name"], duration=video["duration"], tags=video.get("tags", [])
-        )
-        # Link video to creator
-        session.run(
-            "MATCH (v:Video {id: $video_id}), (u:User {id: $creator_id}) "
-            "MERGE (u)-[:CREATED]->(v)",
-            video_id=video["video_id"], creator_id=video["creator_id"]
-        )
-        # Add segments as nodes and relationships
-        for segment in video.get("segments", []):
-            session.run(
-                "MERGE (s:Segment {id: $segment_id, type: $type, start: $start, end: $end})",
-                segment_id=segment["segment_id"], type=segment["type"], start=segment["start"], end=segment["end"]
-            )
-            session.run(
-                "MATCH (v:Video {id: $video_id}), (s:Segment {id: $segment_id}) "
-                "MERGE (v)-[:HAS_SEGMENT]->(s)",
-                video_id=video["video_id"], segment_id=segment["segment_id"]
-            )
-    # Link videos to courses with order if courses provided
-    if courses:
-        for course in courses:
-            session.run(
-                "MERGE (c:Course {id: $course_id}) SET c.name = $course_name",
-                course_id=course["id"], course_name=course.get("name")
-            )
-            video_order = course.get("video_order", [])
-            for idx, video_id in enumerate(video_order):
-                session.run(
-                    "MATCH (v:Video {id: $video_id}), (c:Course {id: $course_id}) "
-                    "MERGE (v)-[r:PART_OF {order: $order}]->(c)",
-                    video_id=video_id, course_id=course["id"], order=idx
-                )
 
+# Returns True if the RESEED environment variable is set to a truthy value
 def should_reseed():
     import os
-    return os.getenv("RESEED", "false").lower() == "true"
+    return os.getenv("RESEED", "false").strip().lower() in ("1", "true", "yes", "y")
+
+# Deletes all nodes and relationships in the database
+def clear_database(session):
+    session.run("MATCH (n) DETACH DELETE n")

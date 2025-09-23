@@ -13,3 +13,8 @@ wheels/
 .env
 # Keep the example file for reference
 !.env.example
+
+# Exclude the mooc folder contents since it contains a lot of data
+data/mooc/*
+# Keep the mooc/folder itself
+!data/mooc/.gitkeep

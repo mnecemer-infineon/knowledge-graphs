@@ -47,6 +47,28 @@ def insert_data_into_kg(session, user_video_act_data, user_data, course_data, vi
             **course_props
         )
 
+    print("Insert ENROLLED_IN relationships", flush=True)
+    # --- Insert ENROLLED_IN relationships for users and courses ---
+    for user in filtered_user_data:
+        user_id = user.get("id")
+        course_order = user.get("course_order", [])
+        enroll_time = user.get("enroll_time", [])
+        for idx, course_id in enumerate(course_order):
+            time = enroll_time[idx] if idx < len(enroll_time) else None
+            # Ensure Course node exists before relationship
+            session.run(
+                "MERGE (c:Course {id: $course_id})",
+                course_id=course_id
+            )
+            session.run(
+                "MATCH (u:User {id: $user_id}), (c:Course {id: $course_id}) "
+                "MERGE (u)-[r:ENROLLED_IN]->(c) "
+                "SET r.enroll_time = $enroll_time",
+                user_id=user_id,
+                course_id=course_id,
+                enroll_time=time
+            )
+
     print("Insert videos and video segments", flush=True)
     # --- Insert filtered videos with full attributes ---
     for video in filtered_video_data:
@@ -100,9 +122,9 @@ def insert_data_into_kg(session, user_video_act_data, user_data, course_data, vi
                     chapter=chapters[idx] if idx < len(chapters) else None
                 )
 
-    print("Insert user relationships - users enrolled in courses and watched videos", flush=True)
-    # --- Insert user activities and relationships ---
-    for user in user_video_act_data:
+    print("Insert user relationships - users watched videos", flush=True)
+    # --- Insert user activities and WATCHED relationships ---
+    for user in filtered_user_data:
         user_id = user.get("id")
         activities = user.get("activity", [])
         # Insert WATCHED relationships for videos
@@ -127,24 +149,6 @@ def insert_data_into_kg(session, user_video_act_data, user_data, course_data, vi
                     local_start_time=act.get("local_start_time"),
                     local_end_time=act.get("local_end_time")
                 )
-        # Insert ENROLLED_IN relationships for courses with enroll_time
-        course_order = user.get("course_order", [])
-        enroll_time = user.get("enroll_time", [])
-        for idx, course_id in enumerate(course_order):
-            time = enroll_time[idx] if idx < len(enroll_time) else None
-            # Ensure Course node exists before relationship
-            session.run(
-                "MERGE (c:Course {id: $course_id})",
-                course_id=course_id
-            )
-            session.run(
-                "MATCH (u:User {id: $user_id}), (c:Course {id: $course_id}) "
-                "MERGE (u)-[r:ENROLLED_IN]->(c) "
-                "SET r.enroll_time = $enroll_time",
-                user_id=user_id,
-                course_id=course_id,
-                enroll_time=time
-            )
 
 
 # Returns True if the RESEED environment variable is set to a truthy value

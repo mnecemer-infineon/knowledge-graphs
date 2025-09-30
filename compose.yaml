@@ -1,0 +1,68 @@
+services:
+  neo4j:
+    image: neo4j:2025.06.2-community-bullseye
+    container_name: neo4j-db
+    ports:
+      - "7474:7474"   # HTTP
+      - "7687:7687"   # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}   # username/neo4j, password from env
+      NEO4JLABS_PLUGINS: '["graph-data-science"]'
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:7474"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+  seed:
+    build:
+      context: .
+      dockerfile: Dockerfile.seed
+    container_name: neo4j-seed
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    env_file:
+      - .env
+    restart: "no"
+    entrypoint: ["/bin/sh", "-c", "python seed_neo4j.py"]
+
+  first_order_logic_reasoning:
+    build: 
+      context: .
+      dockerfile: Dockerfile.reasoning
+    container_name: fol_reasoning
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    restart: "no"
+    volumes:
+      - ./first_order_logic_reasoning:/app
+    entrypoint: ["/bin/sh", "-c", "echo 'first_order_logic_reasoning service is ready and waiting for user input.'; while true; do sleep 1000; done"]
+
+  embeddings_reasoning:
+    build: 
+      context: .
+      dockerfile: Dockerfile.embeddings
+    container_name: embeddings_reasoning
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    restart: "no"
+    volumes:
+      - ./embeddings_reasoning:/app
+    entrypoint: ["/bin/sh", "-c", "echo 'embeddings_reasoning service is ready and waiting for user input.'; while true; do sleep 1000; done"]
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:

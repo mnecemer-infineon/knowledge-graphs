@@ -1,7 +1,21 @@
 
+
+> **Disclaimer:** This project uses Docker and Docker Compose for environment setup and orchestration. It assumes Docker is installed and running on your system. Please install Docker before proceeding.
+
 # Knowledge Graphs Project
 
 This project helps you build a knowledge graph from MOOC data, with tools for formatting, subsetting, seeding, and exploring the data in Neo4j.
+
+---
+
+
+## 0. Install Requirements
+
+Before running `refactor.py` or `create_data_subset.py`, make sure to install the required Python packages:
+
+```sh
+pip install -r requirements.txt
+```
 
 ---
 
@@ -88,6 +102,57 @@ To use the full MOOC dataset instead of a subset:
    ```
 
 Your application will now use the full MOOC data for seeding and analysis.
+
+---
+
+
+---
+
+## 5. Reseeding the Database
+
+If you want to clear the Neo4j database and reseed it from scratch (for example, if you want to reset the data in your Docker volume), you can set the environment variable `RESEED` to `True`.
+
+**How to use:**
+
+- In your `.env` file or as an environment variable, add:
+   ```env
+   RESEED=True
+   ```
+- When `RESEED` is set to `True`, the next time you start the project, the database will be cleared and freshly seeded with the current data.
+- If you want to keep your existing data, set `RESEED` to `False` or remove it.
+
+
+**Note:** Depending on the size of your data, the seeding process may take several minutes up to hours. Please be patient when working with large datasets.
+
+This is useful for development, testing, or when you want to start with a clean database state.
+
+---
+
+
+---
+
+## 6. Running First Order Logic Reasoning via Docker Compose
+
+To analyze which video segments are skipped by users, the first order logic reasoning service is started as a separate service in your `compose.yaml`.
+
+**Usage:**
+
+1. Make sure your Neo4j backend and seed service are running and healthy.
+2. Start the reasoning service:
+   ```sh
+   docker compose up -d first_order_logic_reasoning
+   ```
+3. Attach to the running container with bash:
+   ```sh
+   docker compose exec first_order_logic_reasoning /bin/bash
+   ```
+4. Inside the container, run your reasoning script:
+   ```sh
+   python segments_skipped.py
+   ```
+5. The script will print out segments skipped by users according to your chosen criteria.
+
+This is useful for identifying content that may need improvement or is less engaging for learners.
 
 ---
 

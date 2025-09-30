@@ -1,0 +1,9 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# COPY the first order logic reasoning folder which contains the scripts for reasoning on the knowledge graph
+COPY first_order_logic_reasoning ./
+
+# No CMD specified; container will not run a script by default
